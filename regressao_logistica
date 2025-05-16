@@ -1,0 +1,24 @@
+# ...existing code...
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
+
+# Exemplo simples de classificação binária
+X_log = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
+y_log = np.array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])  # 0 para X<=5, 1 para X>5
+
+modelo_log = LogisticRegression()
+modelo_log.fit(X_log, y_log)
+y_pred_log = modelo_log.predict(X_log)
+y_prob_log = modelo_log.predict_proba(X_log)[:, 1]
+
+# Plotando os resultados da regressão logística
+plt.figure()
+plt.scatter(X_log, y_log, color='blue', label='Dados reais')
+plt.plot(X_log, y_prob_log, color='orange', label='Probabilidade prevista')
+plt.xlabel('X')
+plt.ylabel('Probabilidade de Classe 1')
+plt.title('Regressão Logística')
+plt.legend()
+plt.show()
